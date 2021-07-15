@@ -10,28 +10,66 @@
 </head>
 
 <body>
-    <div id="canvas"></div>
+    <canvas id="canvas">
+
+    </canvas>
     <script>
-        // console.log('1111');
-        canvas.onclick = (e) => {
-            //console.log('333')
-            //console.log(e) console.log调试大法
-            // console.log(e.clientX)  //测试位置
-            // console.log(e.clientY)
-            let div = document.createElement('div')//让创建的div标签显示  id标签canvas
-            //div.style.border = '1px solid red' //边框
-            div.style.position = 'absolute'  //位置为绝对定位
-            div.style.top = e.clientY + 'px'  //Y轴
-            div.style.left = e.clientX + 'px' //X轴
-            div.style.width = '6px'
-            div.style.height = '6px'
-            div.style.marginTop = '-4px'  //让图标移到鼠标上方
-            div.style.marginLeft = '-4px'
-            div.style.borderRadius = '50% 50%'  //图标变成圆
-            div.style.backgroundColor = 'black' //图标变成实心  
-            // console.log(div)
-            canvas.appendChild(div)  //添加div到canvas中
+        //canvas画线 canvas是inline元素  类似于img   
+        let canvas = document.getElementById('canvas');//获取canvas元素
+        canvas.width = document.documentElement.clientWidth;//把canvas元素的宽变成屏幕的宽
+        canvas.height = document.documentElement.clientHeight;//把canvas元素的高变成屏幕的高
+        let ctx = canvas.getContext('2d'); //获取canvas
+        ctx.fillStyle = "#000000";
+
+        let painting = false;
+        //鼠标按下触发
+        canvas.onmousedown = () => {
+            painting = true;
         }
+
+        canvas.onmousemove = (e) => {
+            // console.log('x' + e.clientX);
+            // console.log('y' + e.clientY);
+
+            if (painting === true) {
+                //绘制矩形
+                //ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
+                //console.log('开始')
+                //绘制圆形
+                ctx.beginPath();
+                ctx.arc(e.clientX, e.clientY, 5, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fill();
+            } else {
+                //console.log('停止')
+            }
+        }
+        // 鼠标松开执行
+        canvas.onmouseup = () => {
+            painting = false
+        }
+
+        // console.log('1111');
+        // <div id="canvas"></div>
+        // canvas.onclick = (e) => {  js操作dom次数过多产生性能问题，建议使用canvas
+        //     //console.log('333')
+        //     //console.log(e) console.log调试大法
+        //     // console.log(e.clientX)  //测试位置
+        //     // console.log(e.clientY)
+        //     let div = document.createElement('div')//让创建的div标签显示  id标签canvas
+        //     //div.style.border = '1px solid red' //边框
+        //     div.style.position = 'absolute'  //位置为绝对定位
+        //     div.style.top = e.clientY + 'px'  //Y轴
+        //     div.style.left = e.clientX + 'px' //X轴
+        //     div.style.width = '6px'
+        //     div.style.height = '6px'
+        //     div.style.marginTop = '-4px'  //让图标移到鼠标上方
+        //     div.style.marginLeft = '-4px'
+        //     div.style.borderRadius = '50% 50%'  //图标变成圆
+        //     div.style.backgroundColor = 'black' //图标变成实心  
+        //     // console.log(div)
+        //     canvas.appendChild(div)  //添加div到canvas中
+        // }
 
     </script>
 

@@ -7,6 +7,9 @@
 
 #canvas {
     height: 100vh;
+    width: 100vw; 
+    /* vw和屏幕一样框 */
     /* width: 100vh; */
     border: 1px solid red;
+    display: block;
 }
