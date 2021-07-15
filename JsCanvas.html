@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Canvas画板</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div id="canvas"></div>
+    <script>
+        // console.log('1111');
+        canvas.onclick = (e) => {
+            //console.log('333')
+            //console.log(e) console.log调试大法
+            // console.log(e.clientX)  //测试位置
+            // console.log(e.clientY)
+            let div = document.createElement('div')//让创建的div标签显示  id标签canvas
+            //div.style.border = '1px solid red' //边框
+            div.style.position = 'absolute'  //位置为绝对定位
+            div.style.top = e.clientY + 'px'  //Y轴
+            div.style.left = e.clientX + 'px' //X轴
+            div.style.width = '6px'
+            div.style.height = '6px'
+            div.style.marginTop = '-4px'  //让图标移到鼠标上方
+            div.style.marginLeft = '-4px'
+            div.style.borderRadius = '50% 50%'  //图标变成圆
+            div.style.backgroundColor = 'black' //图标变成实心  
+            // console.log(div)
+            canvas.appendChild(div)  //添加div到canvas中
+        }
+
+    </script>
 
 </body>
 
