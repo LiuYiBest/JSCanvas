@@ -10,55 +10,106 @@
 </head>
 
 <body>
-    <canvas id="canvas">
-
-    </canvas>
+    <canvas id="canvas" width="100" height="100"></canvas>
     <script>
-        //canvas画线 canvas是inline元素  类似于img 
 
-        let canvas = document.getElementById('canvas');//获取canvas元素
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
         canvas.width = document.documentElement.clientWidth;//把canvas元素的宽变成屏幕的宽
         canvas.height = document.documentElement.clientHeight;//把canvas元素的高变成屏幕的高
-        let ctx = canvas.getContext('2d'); //获取canvas
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = "black";      //填充颜色
+        ctx.strokeStyle = "black";      //描边
+        ctx.lineWidth = 24;
+        ctx.lineCap = "round";
 
-        let painting = false;
-        //鼠标按下触发
-        canvas.onmousedown = () => {
-            painting = true;
+        // ctx.fillStyle = "rgb(200,0,0)";  //颜色
+        // ctx.fillRect(10, 10, 55, 50);        //X轴 Y轴  宽度 高度
+        // ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        // ctx.fillRect(30, 30, 55, 50);
+
+
+        // 描边三角形
+        // ctx.beginPath();    开始绘制
+        // ctx.moveTo(125, 125);    //开始的端点x和y轴的坐标
+        // ctx.lineTo(125, 45);     //第二个点的坐标
+        // ctx.lineTo(45, 125);     //第三个点的坐标
+        // ctx.closePath();           //关闭
+        // ctx.stroke();             //描边的宽度
+
+
+        // 画线的函数  
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
         }
 
-        canvas.onmousemove = (e) => {
-            // console.log('x' + e.clientX);
-            // console.log('y' + e.clientY);
+        let painting = false;         //判断鼠标的状态
+        let last                     //记录上一次
 
-            if (painting === true) {
-                //绘制矩形
-                //ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
-                //console.log('开始')
-                //绘制圆形
-                ctx.beginPath();
-                ctx.arc(e.clientX, e.clientY, 5, 0, 2 * Math.PI);
-                ctx.stroke();
-                ctx.fill();
-            } else {
-                //console.log('停止')
+
+        //判断是否是触摸屏还是电脑
+        var isTouchDevice = 'ontouchstart' in document.documentElement;
+        // console.log(isTouchDevice)
+
+        //触屏事件
+        if (isTouchDevice) {
+            canvas.ontouchmove = (e) => {
+                canvas.ontouchstart = (e) => {
+                    let x = e.touches[0].clientX;
+                    let y = e.touches[0].clientY;
+                    last = [x, y]
+                }
+                let x = e.touches[0].clientX;
+                let y = e.touches[0].clientY;
+                drawLine(last[0], last[1], x, y)             //记录上一次
+                last = [x, y]
+            }
+
+        } else {
+            //鼠标按下触发
+            canvas.onmousedown = (e) => {
+                painting = true;
+                last = [e.clientX, e.clientY]                  //记录上一次
+                console.log('hi')
+
+            }
+
+            canvas.onmousemove = (e) => {
+                if (painting === true) {
+                    drawLine(last[0], last[1], e.clientX, e.clientY)             //记录上一次
+                    last = [e.clientX, e.clientY]           //更新记录
+
+                    //绘制矩形
+                    // ctx.fillRect(e.clientX - 5, e.clientY - 5, 10, 10);
+                    //绘制圆形
+                    // ctx.arc(50, 50, 50, 0, 2 * Math.PI, false);      圆心的x轴  圆心的y轴  圆的半径  角度0到2π  360度  
+                    // ctx.beginPath();
+                    // ctx.arc(e.clientX, e.clientY, 5, 0, 2 * Math.PI);
+                    // ctx.stroke();
+                    // ctx.fill();               //圆内容的填充颜色
+                }
+            }
+
+            // 鼠标松开执行
+            canvas.onmouseup = () => {
+                painting = false
             }
         }
-        // 鼠标松开执行
-        canvas.onmouseup = () => {
-            painting = false
-        }
 
-        // console.log('1111');
+
+
+
         // <div id="canvas"></div>
-        // canvas.onclick = (e) => {  js操作dom次数过多产生性能问题，建议使用canvas
+        // canvas.onclick = (e) => {
+        //     js操作dom次数过多产生性能问题，建议使用canvas
         //     //console.log('333')
         //     //console.log(e) console.log调试大法
         //     // console.log(e.clientX)  //测试位置
         //     // console.log(e.clientY)
         //     let div = document.createElement('div')//让创建的div标签显示  id标签canvas
-        //     //div.style.border = '1px solid red' //边框
+        //     div.style.border = '1px solid red' //边框
         //     div.style.position = 'absolute'  //位置为绝对定位
         //     div.style.top = e.clientY + 'px'  //Y轴
         //     div.style.left = e.clientX + 'px' //X轴
