@@ -1,0 +1,13 @@
+12
+28E:\VscodeDemo\CanvasBan\dist132793049342731722 1
+34E:\VscodeDemo\CanvasBan\.gitignore132793052023738597 0
+33E:\VscodeDemo\CanvasBan\README.md132792837795984560 0
+27E:\VscodeDemo\CanvasBan\src132793049154274428 1
+46E:\VscodeDemo\CanvasBan\dist\index.65c7a1e5.js132793049342651935 0
+37E:\VscodeDemo\CanvasBan\src\style.css132793043047251563 0
+38E:\VscodeDemo\CanvasBan\src\index.html132793049154270000 0
+35E:\VscodeDemo\CanvasBan\src\main.js132793037780576251 0
+50E:\VscodeDemo\CanvasBan\dist\index.65c7a1e5.js.map132793049342701802 0
+47E:\VscodeDemo\CanvasBan\dist\index.af814d91.css132793049342612044 0
+51E:\VscodeDemo\CanvasBan\dist\index.af814d91.css.map132793049342701802 0
+39E:\VscodeDemo\CanvasBan\dist\index.html132793049342612044 0

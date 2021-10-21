@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>彩虹画板</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2884401_7sbflh34blt.css">
+    <link rel="stylesheet" href="/index.af814d91.css">
+</head>
+
+<body>
+    <canvas id="drawing-board"></canvas>
+    <div class="color-group">
+        <div class="rainbow"></div>
+        <ul>
+            <li id="red" class="color-item" style="background-color: #FF3333"></li>
+            <li id="orange" class="color-item" style="background-color: #FF7F00"></li>
+            <li id="yellow" class="color-item" style="background-color: #FFFF33"></li>
+            <li id="green" class="color-item" style="background-color: #00FF00"></li>
+            <li id="cyan" class="color-item" style="background-color: #00FFFF"></li>
+            <li id="blue" class="color-item" style="background-color: #0000FF"></li>
+            <li id="purple" class="color-item" style="background-color: #8B00FF"></li>
+        </ul>
+    </div>
+    <div id="range-wrap">
+        <input type="range" id="range" min="1" max="20" value="5" title="画笔大小">
+    </div>
+    <div class="tool">
+        <button id="brush" class="active" title="画笔">
+            <i class="iconfont icon-brush"></i>
+        </button>
+        <button id="eraser" title="橡皮擦">
+            <i class="iconfont icon-eraser"></i>
+        </button>
+        <button id="remove" title="清除">
+            <i class="iconfont icon-remove"></i>
+        </button>
+        <button id="save" title="保存">
+            <i class="iconfont icon-save"></i>
+        </button>
+    </div>
+</body>
+<script src="/index.65c7a1e5.js"></script>
+
+</html>
